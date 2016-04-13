@@ -1,0 +1,87 @@
+Project4: Movie Recommendation Engine
+=======================================================
+author:Qianyun Zhang, Yi Liu, Danmo Wang, Zehao Wang, Zhibo Wan
+date: 04/13/2016
+autosize: true
+
+Introduction
+========================================================
+In this project, we attempt to use the Collaborative Filtering approach to build a basic movie recommendation engine and analyze the information of the movies.
+- The Dataset
+- The Collaborative Filtering approach
+- Movie Recommendation Engine and Movie Analysis
+
+The Dataset
+========================================================
+We firstly use the dataset "movie.csv".In order to keep the recommender simple, we select the 5000 movies with most reviews based on ASIN and then compare the result with OMDB data, filtering out ASINs point to the same movies.
+```{r, echo=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(dplyr)
+library(tidyr)
+library(hexbin)
+
+##Parsing the helpfuness votes
+
+movies.raw=read.csv("~/Desktop/project4/moviescsv.csv")
+
+movies.raw=movies.raw%>%
+  separate(review_helpfulness, 
+           c("helpful.v", "total.v"), sep = "/", 
+           remove=FALSE)
+movies.raw=movies.raw%>%mutate(review_h=as.numeric(helpful.v)/as.numeric(total.v))
+sample_n(movies.raw, 3)
+
+##Compute some user summaries
+user.table=movies.raw%>%
+  #sample_n(100000)%>%
+  group_by(review_userid)%>%
+  summarize(
+    user.count=n(),
+    UReview_ave=mean(review_score, na.rm=T),
+    UReview_read=mean(as.numeric(total.v), na.rm=T),
+    UReview_help=mean(review_h, na.rm=T)
+  )
+head(user.table, n=3)
+##compute some movie summaries
+product.table=movies.raw%>%
+  #sample_n(100000)%>%
+  group_by(product_productid)%>%
+  summarize(
+    prod.count=n(),
+    PReview_read=sum(as.numeric(total.v)),
+    PReview_ave=mean(review_score, na.rm=F)
+  )
+
+head(product.table, n=3)
+
+
+product.table_sort=product.table[with(product.table,order(-product.table$prod.count)),]
+
+product_5000=head(product.table_sort,n=5000)
+```
+
+
+The Collaborative Filtering approach
+========================================================
+
+
+For more details on authoring R presentations please visit <https://support.rstudio.com/hc/en-us/articles/200486468>.
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+Slide With Code
+========================================================
+
+```{r}
+summary(cars)
+```
+
+Slide With Plot
+========================================================
+
+```{r, echo=FALSE}
+plot(cars)
+```
