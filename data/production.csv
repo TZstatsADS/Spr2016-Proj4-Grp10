@@ -1,114 +1,148 @@
 "x" "freq"
-"1" "20th Century Fox" 43
+"1" "20th Century Fox" 58
 "2" "20th Century Fox Distribution" 1
-"3" "20th Century-Fox" 2
-"4" "Almi Cinema 5" 1
-"5" "Amblin Entertainment" 1
-"6" "Artisan Entertainment" 1
-"7" "Artisan Home Entertainment" 1
-"8" "Bryanston Pictures" 1
-"9" "Buena Vista" 8
-"10" "Buena Vista Distribution Compa" 1
-"11" "Buena Vista Pictures" 6
-"12" "Columbia Pictures" 7
-"13" "Columbia Tristar Pictures" 1
-"14" "Compass International Pictures" 1
-"15" "Destination Film" 1
-"16" "Destination Films" 1
-"17" "Dimension Films" 1
-"18" "Disney//Pixar" 1
-"19" "Dreamworks" 4
-"20" "DreamWorks SKG" 2
-"21" "DreamWorks Studios" 1
-"22" "DreamWorks//Paramount Studios" 2
-"23" "FilmDistrict" 1
-"24" "Focus Features" 10
-"25" "Fox" 1
-"26" "Fox Faith" 1
-"27" "Fox Searchlight" 3
-"28" "Fox Searchlight Pictures" 5
-"29" "Gramercy Pictures" 3
-"30" "Gramercy Pictures// USA Films" 1
-"31" "IFC Films" 2
-"32" "IMAX" 2
-"33" "Indican" 1
-"34" "Liberty Films" 1
-"35" "Lions Gate" 1
-"36" "Lions Gate Films" 2
-"37" "Lions Gate Films Inc." 1
-"38" "Lions Gate Releasing" 1
-"39" "Lionsgate" 2
-"40" "LionsGate Entertainment" 2
-"41" "Lionsgate Films" 3
-"42" "Magidson Films" 1
-"43" "Magnet//Magnolia Pictures" 1
-"44" "Magnolia Distribution" 1
-"45" "Magnolia Pictures" 3
-"46" "MCA Universal Home Video" 1
-"47" "MGM" 3
-"48" "MGM Home Entertainment" 2
-"49" "Miramax Films" 8
-"50" "Monica Beach Enterprises" 1
-"51" "N/A" 66
-"52" "National General Pictures" 1
-"53" "NCM// Fathom" 1
-"54" "New Line Cinema" 11
-"55" "Newmarket Films" 1
-"56" "Open Road Films" 1
-"57" "Optimum Productions" 1
-"58" "Orion Pictures Corporation" 2
-"59" "Overture Films" 1
-"60" "Paramount" 2
-"61" "Paramount Pictures" 25
-"62" "Paramount Studios" 3
-"63" "Paramount Vantage" 1
-"64" "Paramount//DWA" 1
-"65" "Picturehouse" 1
-"66" "Playtone Company" 1
-"67" "Pop Art Films" 1
-"68" "Relativity Media" 1
-"69" "RKO" 1
-"70" "Rocky Mountain Pictures" 4
-"71" "Sherwood Pictures" 1
-"72" "Shinchosha Company" 1
-"73" "Sony" 1
-"74" "Sony Pictures" 16
-"75" "Sony Pictures Classics" 8
-"76" "Sony Pictures Home Entertainment" 2
-"77" "Sony Pictures Releasing" 1
-"78" "Sony Pictures//Columbia" 1
-"79" "Sony Pictures//Columbia Pictures" 1
-"80" "Sony Pictures//Screen Gems" 1
-"81" "Sony Screen Gems" 1
-"82" "Sony//Columbia Pictures" 1
-"83" "Sony//MGM" 1
-"84" "Streamline Pictures" 1
-"85" "Sullivan Films" 1
-"86" "Summit Entertainment" 5
-"87" "The Weinstein Co." 1
-"88" "The Weinstein Co.//Dimension" 2
-"89" "The Weinstein Company" 4
-"90" "TLA Releasing" 1
-"91" "Tokuma Shoten" 1
-"92" "Touchstone Pictures" 2
-"93" "TriStar//FilmDistrict" 1
-"94" "Turner Home Entertainment" 1
-"95" "Twentieth Century Fox Home Entertainment" 1
-"96" "United Artists" 1
-"97" "Universal" 2
-"98" "Universal International Pictur" 1
-"99" "Universal Pictures" 25
-"100" "Universal Studios" 1
-"101" "Walt Disney Home Entertainment" 1
-"102" "Walt Disney Pictures" 7
-"103" "Walt Disney Pictures//PIXAR" 1
-"104" "Walt Disney Studios" 2
-"105" "Warner Bros." 5
-"106" "Warner Bros. Pictures" 55
-"107" "Warner Bros. Pictures//Village Roadshow" 2
-"108" "WARNER BROTHERS PICTURES" 1
-"109" "Warner Home Video" 1
-"110" "Warner Independent Pictures" 1
-"111" "WB" 1
-"112" "Yari Film Group" 1
-"113" "York" 1
+"3" "20th Century Fox Film Corporat" 1
+"4" "20th Century-Fox" 2
+"5" "Almi Cinema 5" 1
+"6" "Amblin Entertainment" 1
+"7" "Artisan Entertainment" 1
+"8" "Artisan Home Entertainment" 1
+"9" "Aviator Films" 1
+"10" "Beyond Belief Media" 1
+"11" "Bryanston Pictures" 1
+"12" "Buena Vista" 13
+"13" "Buena Vista Distribution Compa" 3
+"14" "Buena Vista Pictures" 8
+"15" "Columbia Pictures" 13
+"16" "Columbia Tristar Pictures" 1
+"17" "Compass International Pictures" 1
+"18" "Destination Film" 1
+"19" "Destination Films" 1
+"20" "Dimension Films" 1
+"21" "Disney//Pixar" 1
+"22" "Dreamworks" 8
+"23" "Dreamworks Distribution LLC" 1
+"24" "DreamWorks SKG" 2
+"25" "DreamWorks Studios" 1
+"26" "DreamWorks//Paramount Studios" 2
+"27" "Empire Pictures" 1
+"28" "FilmDistrict" 2
+"29" "Focus Features" 13
+"30" "Fox" 1
+"31" "Fox Atomic" 1
+"32" "Fox Faith" 1
+"33" "Fox Searchlight" 5
+"34" "Fox Searchlight Pictures" 5
+"35" "Gener8Xion Entertainment" 1
+"36" "Gramercy Pictures" 4
+"37" "Gramercy Pictures// USA Films" 1
+"38" "HBO Films" 1
+"39" "IFC Films" 3
+"40" "IMAX" 2
+"41" "Indican" 2
+"42" "Inferno Entertainment" 1
+"43" "Liberty Films" 1
+"44" "Lions Gate" 1
+"45" "Lions Gate Films" 6
+"46" "Lions Gate Films Inc." 2
+"47" "Lions Gate Releasing" 1
+"48" "Lionsgate" 3
+"49" "LionsGate Entertainment" 2
+"50" "Lionsgate Films" 7
+"51" "Magidson Films" 1
+"52" "Magnet//Magnolia Pictures" 1
+"53" "Magnolia Distribution" 1
+"54" "Magnolia Pictures" 4
+"55" "Mars Films" 2
+"56" "MCA Universal Home Video" 2
+"57" "MGM" 7
+"58" "MGM Home Entertainment" 3
+"59" "Miramax" 2
+"60" "Miramax Films" 13
+"61" "Monica Beach Enterprises" 1
+"62" "N/A" 133
+"63" "National General Pictures" 1
+"64" "NCM// Fathom" 1
+"65" "New Line Cinema" 23
+"66" "Newmarket Films" 1
+"67" "Open Road Films" 1
+"68" "Optimum Productions" 1
+"69" "Orion Home Video" 1
+"70" "Orion Pictures Corporation" 4
+"71" "Overture Films" 1
+"72" "Paramount" 3
+"73" "Paramount Classics" 1
+"74" "Paramount Pictures" 34
+"75" "Paramount Studios" 6
+"76" "Paramount Vantage" 2
+"77" "Paramount//DWA" 1
+"78" "Picturehouse" 1
+"79" "Playtone Company" 1
+"80" "Pop Art Films" 1
+"81" "Reboot Media" 1
+"82" "Relativity Media" 3
+"83" "Republic Pictures" 1
+"84" "RKO" 1
+"85" "RKO Radio Pictures" 1
+"86" "Rocky Mountain Pictures" 4
+"87" "Rogue Pictures//Focus Features" 1
+"88" "Rogue Pictures//Universal Studios" 1
+"89" "Ryko Distribution" 1
+"90" "Samuel Goldwyn Films LLC" 1
+"91" "Screen Gems" 1
+"92" "Sherwood Pictures" 1
+"93" "Shinchosha Company" 1
+"94" "Sony" 1
+"95" "Sony Pictures" 28
+"96" "Sony Pictures Classics" 12
+"97" "Sony Pictures Entertainment" 2
+"98" "Sony Pictures Home Entertainment" 3
+"99" "Sony Pictures Releasing" 2
+"100" "Sony Pictures//Columbia" 2
+"101" "Sony Pictures//Columbia Pictures" 1
+"102" "Sony Pictures//Screen Gems" 2
+"103" "Sony Screen Gems" 1
+"104" "Sony Wonder" 1
+"105" "Sony//Columbia Pictures" 2
+"106" "Sony//MGM" 1
+"107" "Sony//Screen Gems" 1
+"108" "Streamline Pictures" 1
+"109" "Sullivan Films" 1
+"110" "Summit Entertainment" 7
+"111" "The Weinstein Co." 2
+"112" "The Weinstein Co.//Dimension" 2
+"113" "The Weinstein Company" 4
+"114" "ThinkFilm" 2
+"115" "TLA Releasing" 1
+"116" "Tokuma Shoten" 1
+"117" "Touchstone Pictures" 4
+"118" "TriStar Pictures" 1
+"119" "TriStar//FilmDistrict" 1
+"120" "Turner Entertainment" 1
+"121" "Turner Home Entertainment" 1
+"122" "Twentieth Century Fox Home Entertainment" 2
+"123" "United Artists" 1
+"124" "Universal" 2
+"125" "Universal City Studios" 1
+"126" "Universal Films" 1
+"127" "Universal International Pictur" 1
+"128" "Universal Pictures" 41
+"129" "Universal Studios" 1
+"130" "Vanguard" 2
+"131" "Vestron Video" 1
+"132" "Walt Disney Home Entertainment" 1
+"133" "Walt Disney Pictures" 14
+"134" "Walt Disney Pictures//PIXAR" 1
+"135" "Walt Disney Productions" 1
+"136" "Walt Disney Studios" 2
+"137" "Warner Bros." 7
+"138" "Warner Bros. Pictures" 81
+"139" "Warner Bros. Pictures//Village Roadshow" 2
+"140" "WARNER BROTHERS PICTURES" 2
+"141" "Warner Home Video" 3
+"142" "Warner Independent Pictures" 4
+"143" "WB" 1
+"144" "Well Go USA" 1
+"145" "Yari Film Group" 1
+"146" "Yash Raj Films" 1
+"147" "York" 1
