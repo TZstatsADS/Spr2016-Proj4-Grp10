@@ -188,6 +188,8 @@ Then given your UserID, we identify the most similar users and then return the m
 In this case, A and B represents the vector of all the movie ratings from two Users.  
 For example
 ![Alt text](/Users/apple/Desktop/project4/3.png)
+
+We reshape the data and construct a big matrix where the columns are the product IDs and the rows are the User IDs
 ```{r eval=FALSE}
 library("plyr")
 library("reshape2")
