@@ -46,7 +46,7 @@ shinyUI(fluidPage(titlePanel("Movie Movie Movie"),
                                                         tabPanel("Analysis", br(),plotlyOutput("distplot1") , value=1), 
                                                         
                                                         tabPanel("Genre Analysis", br(), plotlyOutput("distplot2"), value=2),
-                                                        tabPanel("engine", br(), helpText("Choose the genre"), value=3),
+                                                        tabPanel("Engine", br(), helpText("Choose the genre"), value=3),
                                                         
                                                         id = "Panels"
                                             )
