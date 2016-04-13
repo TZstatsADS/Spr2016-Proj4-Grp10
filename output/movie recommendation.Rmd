@@ -11,15 +11,18 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introduction
 In this project, we attempt to use the Collaborative Filtering approach to build a basic movie recommendation engine and analyze the information of the movies.There are 3 parts of the this presentation:   
--The Dataset  
--The Collaborative Filtering approach  
--Shiny App: Movie Recommendation Engine and Movie Analysis   
+* The Dataset  
+* The Collaborative Filtering approach  
+* Shiny App: Movie Recommendation Engine and Movie Analysis  
+
+![Alt text](/Users/apple/Desktop/project4/1.jpg) 
+
 
 ## The Dataset  
 We firstly use the dataset "movie.csv".In order to keep the recommender simple, we select the 5000 movies with most reviews based on ASIN and then compare the result with OMDB data, filtering out ASINs point to the same movies.   
 
 ## Data Processing  
-```{r}
+```{r eval=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 library(dplyr)
@@ -165,9 +168,12 @@ feature_table=rbind(feature_table,tmp_row)
 
 ## The Collaborative Filtering approach
 We use the "Cosine Similarity" Algorithm to compute the similarity between any two users.  
-Then given your UserID, we find the most similar users and then return the movies that are liked by other users while you have not watched.
+Then given your UserID, we identify the most similar users and then return the movies that are similar to the movies already liked by the user.
 
-## Cosine Similarity
+## Cosine Similarity   
+
+![Alt text](/Users/apple/Desktop/project4/2.png)  
+In this case, A and B represents the vector of all the movie ratings from two Users.
 ```{r eval=FALSE}
 library("plyr")
 library("reshape2")
