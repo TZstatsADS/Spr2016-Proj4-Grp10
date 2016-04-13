@@ -1,26 +1,25 @@
-<html>
-<head>
-<title>Title</title>
-</head>
-<body>
-<h1>Project4: Movie Recommendation Engine</h1>
+---
+title: "Project4: Movie Recommendation Engine"
+author: "Qianyun Zhang, Yi Liu, Danmo Wang, Zehao Wang, Zhibo Wan"
+date: "April,13,2016"
+output: html_document
+---
 
-<p>Author: Qianyun Zhang, Yi Liu, Danmo Wang, Zehao Wang, Zhibo Wan
-</p>
-<p>Date: April.13, 2016
-</p>
-<h2>Introduction</h2>
-<p>In this project, we attempt to use the Collaborative Filtering approach to build a basic movie recommendation engine and analyze the information of the movies.There are 3 parts of the this presentation:</p>
-<p>- The Dataset</p>
-<p>- The Collaborative Filtering approach</p>
-<p>- Shiny App: Movie Recommendation Engine and Movie Analysis</p>
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
-<h2>The Dataset</h2>
-<p>We firstly use the dataset "movie.csv".In order to keep the recommender simple, we select the 5000 movies with most reviews based on ASIN and then compare the result with OMDB data, filtering out ASINs point to the same movies.
-</p>
+## Introduction
+In this project, we attempt to use the Collaborative Filtering approach to build a basic movie recommendation engine and analyze the information of the movies.There are 3 parts of the this presentation:   
+-The Dataset  
+-The Collaborative Filtering approach  
+-Shiny App: Movie Recommendation Engine and Movie Analysis   
 
-<h3>Data Processing</h3>
-<!--begin.rcode
+## The Dataset  
+We firstly use the dataset "movie.csv".In order to keep the recommender simple, we select the 5000 movies with most reviews based on ASIN and then compare the result with OMDB data, filtering out ASINs point to the same movies.   
+
+## Data Processing  
+```{r}
 knitr::opts_chunk$set(echo = TRUE)
 
 library(dplyr)
@@ -65,10 +64,10 @@ head(product.table, n=3)
 product.table_sort=product.table[with(product.table,order(-product.table$prod.count)),]
 
 product_5000=head(product.table_sort,n=5000)
-end.rcode-->
-<h3>OMDB
-</h3>
-<!--begin.rcode{r eval=FALSE}
+```
+
+## OMDB  
+```{r eval=FALSE}
 library(rvest)
 library(tidyr)
 library(devtools)
@@ -161,20 +160,19 @@ for(j in 1:length(features_name))
 }
 feature_table=rbind(feature_table,tmp_row)
 }
-end.rcode-->
-
-<h3> The Collaborative Filtering approach
-</h3>
-<p>Firstly, we use the "Cosine Similarity" Algorithm to compute the similarity between any two users.
-</p>
-<p>Then given User1,we find the most similar user and return the movies that are not viewed by User1.
-</p>
+```
 
 
+## The Collaborative Filtering approach
+Firstly, we use the "Cosine Similarity" Algorithm to compute the similarity between any two users.  
+Then given User1,we find the most similar user and return the movies that are not viewed by User1.
 
-<!--begin.rcode fig.width=7, fig.height=6
-plot(cars)
-end.rcode-->
+## Including Plots
 
-</body>
-</html>
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
