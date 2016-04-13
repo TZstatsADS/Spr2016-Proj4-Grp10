@@ -167,15 +167,21 @@ feature_table=rbind(feature_table,tmp_row)
 }
 ```
 
+##Algorithms we have tried
+We have tryed the Movie Recommendation System of "Beer Dataset", but unfortunately it doesn't fit well to the movie dataset. It puts the information of user-based onto the item-based.To illustrate it, For movie 1,if all the ratings of users are 10,and for movie 2, all the ratings are 1,their correlation is 1,which is not true.  
+
+## Slope One(item-based algorithm)
+
+![Alt text](/Users/apple/Desktop/project4/9.jpg)  
+![Alt text](/Users/apple/Desktop/project4/10.jpg)
 
 ## The user-based Collaborative Filtering approach
 The User-Based Collaborative Filtering approach groups users according to their preferences, and then recommends an item that a similar user in the same group viewed or liked.  
 For example, if user 1 liked movie A, B and C, and if user 2 liked movie A and B, then movie C might make a good recommendation to user 2.  
-We have tryed the Movie Recommendation System of "Beer Dataset", but unfortunately it doesn't fit well to the movie dataset. Hence in this post, We will use User-Based Collaborative Filtering based on "Cosine Similarity" Algorithm to generate a top-5 recommendation list for users 
+Hence in this post, We will use User-Based Collaborative Filtering based on "Cosine Similarity" Algorithm to generate a top-5 recommendation list for users 
 Then given your UserID, we identify the most similar users and then return the movies that are similar to the movies already liked by the user.
 
-## Cosine Similarity   
-
+## Cosine Similarity 
 ![Alt text](/Users/apple/Desktop/project4/2.png)  
 In this case, A and B represents the vector of all the movie ratings from two Users.  
 For example
@@ -235,10 +241,19 @@ find_similarity_movie<-function(myid,n=5){
 }
 ```
 
+
+
 ## Movie Recommendation Engine
+![Alt text](/Users/apple/Desktop/project4/11.jpg)  
 
 ## Movie Analysis
-We select Genere, Year, PReview_average, Awards, Production Company of the data and make an analysis. We don't choose reviews because we have selected the 5000 movies with most reviews so it may not be distinct.  
+We analyzed the relationship between director names, Genre, Production industry and PReview_average scores, counts.
+
+![Alt text](/Users/apple/Desktop/project4/6.jpg)    
+![Alt text](/Users/apple/Desktop/project4/7.jpg)  
+![Alt text](/Users/apple/Desktop/project4/8.jpg) 
+
+Then we select Geere, Year, PReview_average, Awards, Production Industry of the data and make a shiny app. We don't choose reviews because we have selected the 5000 movies with most reviews so it may not be distinct.  
 
 For example  
 
