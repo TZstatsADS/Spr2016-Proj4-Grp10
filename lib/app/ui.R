@@ -9,7 +9,7 @@
 
 library(shiny)
 library(plotly)
-library(dplyr)
+
 library(splitstackshape)
 library(ggplot2)
 library(shinydashboard)
@@ -23,7 +23,7 @@ shinyUI(fluidPage(titlePanel("Movie Movie Movie"),
                                                              helpText("Give the overall analysis"),
                                                              br(),
                                                              selectInput("Plot", "Analysis",
-                                                                         c("Year", "Awards"))
+                                                                         c("Year", "Awards","Production"))
                                             ),
                                             conditionalPanel(condition="input.Panels==2",
                                                              helpText("Choose the genre"),
