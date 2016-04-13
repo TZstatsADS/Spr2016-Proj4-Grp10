@@ -24,7 +24,7 @@ In this project, we attempt to use the user-based Collaborative Filtering approa
 We firstly use the dataset "movie.csv".In order to keep the recommender simple, we select the 5000 movies with most reviews based on ASIN and then compare the result with OMDB data, filtering out ASIN point to the same movies.   
 
 ## Data Processing  
-```{r eval=FALSE}
+```{r}
 knitr::opts_chunk$set(echo = TRUE)
 
 library(dplyr)
@@ -173,7 +173,9 @@ We have tryed the Movie Recommendation System of "Beer Dataset", but unfortunate
 ## Slope One(item-based algorithm)
 
 ![Alt text](/Users/apple/Desktop/project4/9.jpg)  
-![Alt text](/Users/apple/Desktop/project4/10.jpg)
+![Alt text](/Users/apple/Desktop/project4/10.jpg)  
+
+Since there are too many Users,and it's really complicted to add all the missing-values of the ratings.
 
 ## The user-based Collaborative Filtering approach
 The User-Based Collaborative Filtering approach groups users according to their preferences, and then recommends an item that a similar user in the same group viewed or liked.  
