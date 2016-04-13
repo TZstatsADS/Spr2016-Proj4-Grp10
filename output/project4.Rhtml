@@ -1,0 +1,182 @@
+<html>
+<head>
+<title>Title</title>
+</head>
+<body>
+<h1>Project4: Movie Recommendation Engine</h1>
+
+<p>Author: Qianyun Zhang, Yi Liu, Danmo Wang, Zehao Wang, Zhibo Wan
+</p>
+<p>Date: April.13, 2016
+</p>
+<h2>Introduction</h2>
+<p>In this project, we attempt to use the Collaborative Filtering approach to build a basic movie recommendation engine and analyze the information of the movies.There are 3 parts of the this presentation:</p>
+<p>- The Dataset</p>
+<p>- The Collaborative Filtering approach</p>
+<p>- Shiny App: Movie Recommendation Engine and Movie Analysis</p>
+
+<h2>The Dataset</h2>
+<p>We firstly use the dataset "movie.csv".In order to keep the recommender simple, we select the 5000 movies with most reviews based on ASIN and then compare the result with OMDB data, filtering out ASINs point to the same movies.
+</p>
+
+<h3>Data Processing</h3>
+<!--begin.rcode
+knitr::opts_chunk$set(echo = TRUE)
+
+library(dplyr)
+library(tidyr)
+library(hexbin)
+
+##Parsing the helpfuness votes
+
+movies.raw=read.csv("~/Desktop/project4/moviescsv.csv")
+
+movies.raw=movies.raw%>%
+  separate(review_helpfulness, 
+           c("helpful.v", "total.v"), sep = "/", 
+           remove=FALSE)
+movies.raw=movies.raw%>%mutate(review_h=as.numeric(helpful.v)/as.numeric(total.v))
+sample_n(movies.raw, 3)
+
+##Compute some user summaries
+user.table=movies.raw%>%
+  #sample_n(100000)%>%
+  group_by(review_userid)%>%
+  summarize(
+    user.count=n(),
+    UReview_ave=mean(review_score, na.rm=T),
+    UReview_read=mean(as.numeric(total.v), na.rm=T),
+    UReview_help=mean(review_h, na.rm=T)
+  )
+head(user.table, n=3)
+##compute some movie summaries
+product.table=movies.raw%>%
+  #sample_n(100000)%>%
+  group_by(product_productid)%>%
+  summarize(
+    prod.count=n(),
+    PReview_read=sum(as.numeric(total.v)),
+    PReview_ave=mean(review_score, na.rm=F)
+  )
+
+head(product.table, n=3)
+
+
+product.table_sort=product.table[with(product.table,order(-product.table$prod.count)),]
+
+product_5000=head(product.table_sort,n=5000)
+end.rcode-->
+<h3>OMDB
+</h3>
+<!--begin.rcode
+library(rvest)
+library(tidyr)
+library(devtools)
+# Install omdbapi
+devtools::install_github("hrbrmstr/omdbapi")
+
+library(omdbapi)
+library(pbapply)
+library(dplyr)
+library(stringr)
+# Example 1, not found in OMDB
+# ASIN.inq="000500005X" 
+# Example 2, found in OMDB
+ASIN.list=product_5000$product_productid
+
+#######below is data clean part###################################################################
+ASIN.str=toString(ASIN.list)
+ASIN.str.left=ASIN.str
+
+pivot=1
+ASIN.GoodList=c()
+
+while(toString(pivot)!="NA")
+{
+  pos=str_locate(ASIN.str.left,",")
+  pivot=pos[1]
+  ASIN.tmp=substr(ASIN.str.left,1,pivot-1)
+  
+
+    if(toString(as.numeric(ASIN.tmp))!="NA")
+    {
+      ASIN.tmp=substr(ASIN.tmp,1,str_length(ASIN.tmp)-2)
+    }
+  
+  ASIN.GoodList=c(ASIN.GoodList,ASIN.tmp)
+  ASIN.str.left=substring(ASIN.str.left,pivot+2)
+  
+}
+
+ASIN.GoodList=ASIN.GoodList[1:499]
+
+####below is feature 
+
+
+features_name=c("Rated","Type")
+
+feature_table=NULL
+
+
+for(i in 1:length(ASIN.GoodList))
+{
+movie1=NULL
+movie1.title=NULL
+
+ASIN.inq=ASIN.GoodList[i] # this movie's title has a "("
+
+movie1<-tryCatch( {html(paste("http://www.amazon.com/exec/obidos/ASIN/", ASIN.inq, sep=""))},error=function(e){})
+
+
+if(is.null(movie1)){next}
+
+movie1.title=
+  movie1 %>% 
+  html_node("title") %>%
+  html_text()
+
+movie1.title=strsplit(movie1.title, ": ")[[1]][2]
+movie1.title=strsplit(movie1.title, " \\[")[[1]][1]
+movie1.title=strsplit(movie1.title, " \\(")[[1]][1]
+
+movie1.title=substr(movie1.title,1,45)
+
+
+
+tryCatch({omdb.entry=search_by_title(movie1.title)},error=function(e){})
+
+if(length(omdb.entry)==0){next}
+
+
+movie_feature=find_by_id(omdb.entry$imdbID[1], include_tomatoes=T)
+
+tmp_row=c(ASIN.inq,movie1.title)
+feature_list=names(movie_feature)
+
+for(j in 1:length(features_name))
+{
+  index=match(features_name[j],feature_list)
+  tmp_row=c(tmp_row,movie_feature[index])
+  
+}
+feature_table=rbind(feature_table,tmp_row)
+}
+end.rcode-->
+
+<h3> The Collaborative Filtering approach
+</h3>
+<p>Firstly, we use the "Cosine Similarity" Algorithm to compute the similarity between any two users.
+</p>
+<p>Then given User1,we find the most similar user and return the movies that are not viewed by User1.
+</p>
+<!--begin.rcode
+summary(cars)
+end.rcode-->
+
+
+<!--begin.rcode fig.width=7, fig.height=6
+plot(cars)
+end.rcode-->
+
+</body>
+</html>
