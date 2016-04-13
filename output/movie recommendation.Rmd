@@ -234,9 +234,16 @@ find_similarity_movie<-function(myid,n=5){
   recursivefunction(myid,b,n=5,j=1)
 }
 ```
- 
+
+## Movie Recommendation Engine
+
 ## Movie Analysis
-We select Genere, Year, PReview_average, Awards, Production Company of the data and make an analysis
+We select Genere, Year, PReview_average, Awards, Production Company of the data and make an analysis. We don't choose reviews because we have selected the 5000 movies with most reviews so it may not be distinct.  
+
+For example  
+
+![Alt text](/Users/apple/Desktop/project4/5.jpg) 
+
 
 Here are the codes of Shiny UI ande Server  
 Shiny UI
