@@ -14,18 +14,18 @@ library(splitstackshape)
 library(ggplot2)
 library(shinydashboard)
 # Define UI for application that draws a histogram
-shinyUI(navbarPage("Movie Movie Movie",theme = "back.css",
-                   tabPanel("dataAnalysis",  
+shinyUI(fluidPage(titlePanel("Movie Movie Movie"),
+                    
                             # Sidebar with a selector input for neighborhood
                             sidebarLayout(position="left",
                                           sidebarPanel(
-                                            conditionalPanel(condition="input.conditionedPanels==1",
+                                            conditionalPanel(condition="input.Panels==1",
                                                              helpText("Give the overall analysis"),
                                                              br(),
                                                              selectInput("Plot", "Analysis",
                                                                          c("Year", "Awards"))
                                             ),
-                                            conditionalPanel(condition="input.conditionedPanels==2",
+                                            conditionalPanel(condition="input.Panels==2",
                                                              helpText("Choose the genre"),
                                                              hr(),
                                                              selectInput("genre", "Genre (a movie can have multiple genres)",
@@ -33,6 +33,11 @@ shinyUI(navbarPage("Movie Movie Movie",theme = "back.css",
                                                                             "Crime", "Documentary", "Drama", "Family", "Fantasy", "History",
                                                                             "Horror", "Music", "Musical", "Mystery", "Romance", "Sci-Fi",
                                                                             "Short", "Sport", "Thriller", "War", "Western"))
+                                                             
+                                            ),
+                                            conditionalPanel(condition="input.Panels==3",
+                                                             helpText("Choose the genre"),
+                                                             hr()
                                             )
                                           ),
                                           mainPanel(
@@ -41,11 +46,12 @@ shinyUI(navbarPage("Movie Movie Movie",theme = "back.css",
                                                         tabPanel("Analysis", br(),plotlyOutput("distplot1") , value=1), 
                                                         
                                                         tabPanel("Genre Analysis", br(), plotlyOutput("distplot2"), value=2),
+                                                        tabPanel("engine", br(), helpText("Choose the genre"), value=3),
                                                         
-                                                        id = "conditionedPanels"
+                                                        id = "Panels"
                                             )
                                           )
-                            )
+                            
                             
                             
                    )
