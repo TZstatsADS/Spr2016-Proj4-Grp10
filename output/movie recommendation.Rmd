@@ -1,5 +1,5 @@
 ---
-title: "Project4: Movie Recommendation Engine"
+title: "Movie Recommendation Engine (group 10)"
 author: "Qianyun Zhang, Yi Liu, Danmo Wang, Zehao Wang, Zhibo Wan"
 date: "April,13,2016"
 output: html_document
@@ -10,16 +10,18 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Introduction
-In this project, we attempt to use the Collaborative Filtering approach to build a basic movie recommendation engine and analyze the information of the movies.There are 3 parts of the this presentation:   
+In this project, we attempt to use the user-based Collaborative Filtering approach to build a basic movie recommendation engine and analyze the information of the movies.There are 4 parts of the this presentation:  
+
 * The Dataset  
-* The Collaborative Filtering approach  
-* Shiny App: Movie Recommendation Engine and Movie Analysis  
+* The user-based Collaborative Filtering approach  
+* Movie Recommendation Engine
+* Shiny App: Movie Analysis  
 
 ![Alt text](/Users/apple/Desktop/project4/1.jpg) 
 
 
 ## The Dataset  
-We firstly use the dataset "movie.csv".In order to keep the recommender simple, we select the 5000 movies with most reviews based on ASIN and then compare the result with OMDB data, filtering out ASINs point to the same movies.   
+We firstly use the dataset "movie.csv".In order to keep the recommender simple, we select the 5000 movies with most reviews based on ASIN and then compare the result with OMDB data, filtering out ASIN point to the same movies.   
 
 ## Data Processing  
 ```{r eval=FALSE}
@@ -166,14 +168,18 @@ feature_table=rbind(feature_table,tmp_row)
 ```
 
 
-## The Collaborative Filtering approach
-We use the "Cosine Similarity" Algorithm to compute the similarity between any two users.  
+## The user-based Collaborative Filtering approach
+The User-Based Collaborative Filtering approach groups users according to their preferences, and then recommends an item that a similar user in the same group viewed or liked.  
+For example, if user 1 liked movie A, B and C, and if user 2 liked movie A and B, then movie C might make a good recommendation to user 2.  
+We have tryed the Movie Recommendation System of "Beer Dataset", but unfortunately it doesn't fit well to the movie dataset. Hence in this post, We will use User-Based Collaborative Filtering based on "Cosine Similarity" Algorithm to generate a top-5 recommendation list for users 
 Then given your UserID, we identify the most similar users and then return the movies that are similar to the movies already liked by the user.
 
 ## Cosine Similarity   
 
 ![Alt text](/Users/apple/Desktop/project4/2.png)  
-In this case, A and B represents the vector of all the movie ratings from two Users.
+In this case, A and B represents the vector of all the movie ratings from two Users.  
+For example
+![Alt text](/Users/apple/Desktop/project4/3.png)
 ```{r eval=FALSE}
 library("plyr")
 library("reshape2")
@@ -229,17 +235,95 @@ find_similarity_movie<-function(myid,n=5){
 }
 ```
  
+## Movie Analysis
+We select Genere, Year, PReview_average, Awards, Production Company of the data and make an analysis
 
+Here are the codes of Shiny UI ande Server  
+Shiny UI
+```{r eval=FALSE}
+library(shiny)
+library(plotly)
+library(dplyr)
+library(splitstackshape)
+library(ggplot2)
+library(shinydashboard)
+# Define UI for application that draws a histogram
+shinyUI(fluidPage(titlePanel("Movie Movie Movie"),
+                    
+                            # Sidebar with a selector input for neighborhood
+                            sidebarLayout(position="left",
+                                          sidebarPanel(
+                                            conditionalPanel(condition="input.Panels==1",
+                                                             helpText("Give the overall analysis"),
+                                                             br(),
+                                                             selectInput("Plot", "Analysis",
+                                                                         c("Year", "Awards"))
+                                            ),
+                                            conditionalPanel(condition="input.Panels==2",
+                                                             helpText("Choose the genre"),
+                                                             hr(),
+                                                             selectInput("genre", "Genre (a movie can have multiple genres)",
+                                                                         c( "Action", "Adventure", "Animation", "Biography", "Comedy",
+                                                                            "Crime", "Documentary", "Drama", "Family", "Fantasy", "History",
+                                                                            "Horror", "Music", "Musical", "Mystery", "Romance", "Sci-Fi",
+                                                                            "Short", "Sport", "Thriller", "War", "Western"))
+                                                             
+                                            ),
+                                            conditionalPanel(condition="input.Panels==3",
+                                                             helpText("Choose the genre"),
+                                                             hr()
+                                            )
+                                          ),
+                                          mainPanel(
+                                            tabsetPanel(type="pill",
+                                                        
+                                                        tabPanel("Analysis", br(),plotlyOutput("distplot1") , value=1), 
+                                                        
+                                                        tabPanel("Genre Analysis", br(), plotlyOutput("distplot2"), value=2),
+                                                        tabPanel("engine", br(), helpText("Choose the genre"), value=3),
+                                                        
+                                                        id = "Panels"
+                                            )
+                                          )
+                            
+                            
+                            
+                   )
+))
+```
+Shiny Server
+```{r eval=FALSE}
+library(shiny)
 
-
-
-
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+# Define server logic required to draw a histogram
+shinyServer(function(input, output) {
+  genre <- read.csv("genre.csv")
+  test <- read.csv("test.csv")
+  output$distplot1 <- renderPlotly(
+    if (input$Plot >0){
+      if (input$Plot =="Year"){
+        year <- test %>%
+          group_by(Year) %>%
+          summarize(
+            count = n())
+        plot_ly(year, x = Year, y = count) %>% layout(title = "number of movies")
+      }
+      else if (input$Plot == "Awards"){
+        plot_ly(data = test, x = Year, y = PReview_ave, color = awards, text=paste("Title:", test$Movie_Name), mode = "markers")
+      }
+      
+    })
+ 
+    output$distplot2 <- renderPlotly(
+      if(input$genre >0){
+        genre$Genre <- as.character(genre$Genre)
+        drama <- genre[which(genre$Genre == as.character(input$genre)),]
+        plot_ly(drama, x = Year, y =PReview_ave,color = awards,text=paste("Title:", drama$Movie_Name), mode = "markers" ,colors=c("#f03b20","#7fcdbb")) 
+        
+      }
+      
+    )
+  
+})
 ```
 
