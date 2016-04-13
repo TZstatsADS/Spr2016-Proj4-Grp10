@@ -23,16 +23,16 @@ shinyServer(function(input, output) {
         plot_ly(year, x = Year, y = count) %>% layout(title = "number of movies")
       }
       else if (input$Plot == "Awards"){
-        plot_ly(data = test, x = Year, y = PReview_ave, color = awards, text=paste("Title:", test$title), mode = "markers")
+        plot_ly(data = test, x = Year, y = PReview_ave, color = awards, text=paste("Title:", test$Movie_Name), mode = "markers")
       }
       
     })
  
     output$distplot2 <- renderPlotly(
       if(input$genre >0){
-        genre$genre <- as.character(genre$genre)
-        drama <- genre[which(genre$genre == as.character(input$genre)),]
-        plot_ly(drama, x = Year, y =PReview_ave,color = awards,text=paste("Title:", drama$title), mode = "markers" ,colors=c("#f03b20","#7fcdbb")) 
+        genre$Genre <- as.character(genre$Genre)
+        drama <- genre[which(genre$Genre == as.character(input$genre)),]
+        plot_ly(drama, x = Year, y =PReview_ave,color = awards,text=paste("Title:", drama$Movie_Name), mode = "markers" ,colors=c("#f03b20","#7fcdbb")) 
         
       }
       
