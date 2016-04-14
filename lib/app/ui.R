@@ -6,7 +6,8 @@
 # 
 #    http://shiny.rstudio.com/
 #
-
+library(plyr)
+library(reshape2)
 library(shiny)
 library(plotly)
 
@@ -36,8 +37,10 @@ shinyUI(fluidPage(titlePanel("Movie Movie Movie"),
                                                              
                                             ),
                                             conditionalPanel(condition="input.Panels==3",
-                                                             helpText("Choose the genre"),
-                                                             hr()
+                                                             #helpText("Choose an id to start"),
+                                                             hr(),
+                                                             selectInput("myid","Select an id to start",
+                                                                         c("A102B8D74H64TO","A103KNDW8GN92L"))
                                             )
                                           ),
                                           mainPanel(
@@ -46,7 +49,7 @@ shinyUI(fluidPage(titlePanel("Movie Movie Movie"),
                                                         tabPanel("Analysis", br(),plotlyOutput("distplot1") , value=1), 
                                                         
                                                         tabPanel("Genre Analysis", br(), plotlyOutput("distplot2"), value=2),
-                                                        tabPanel("Engine", br(), helpText("Choose the genre"), value=3),
+                                                        tabPanel("Engine", br(), verbatimTextOutput("view"),helpText("movies recommended to you"), value=3),
                                                         
                                                         id = "Panels"
                                             )

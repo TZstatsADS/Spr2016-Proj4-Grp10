@@ -18,8 +18,8 @@ setwd("E:/W4249")
   #b2 <- beer_name_to_id(x$beer2)
 #  c("sim"=similarity(x$user1, x$user2))
 #}, .progress="text")
-load("E:/W4249/project4-team-10/output/results.RData")
-load("E:/W4249/project4-team-10/output/matrix1.RData")
+load("E:/W4249/project4-team-10/lib/app/results.RData")
+load("E:/W4249/project4-team-10/lib/app/matrix1.RData")
 
 recursivefunction<-function(c1,b,n=5,j=1,movie){
   c2<-matrix1[which(rownames(matrix1)==b[1]),]

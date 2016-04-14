@@ -37,5 +37,41 @@ shinyServer(function(input, output) {
       }
       
     )
-  
+  output$view <- renderPrint({
+        load("results.RData")
+        load("matrix1.RData")
+        recursivefunction<-function(c1,b,n=5,j=1,movie){
+          c2<-matrix1[which(rownames(matrix1)==b[1]),]
+          for(i in 1:length(c1)){
+            if (c1[i]==0 & c2[i]>1){
+              if(!(names(c1)[i] %in% movie)){
+                movie[j]=names(c1)[i]
+                j=j+1
+              }
+            }
+          }
+          if(j<n+1){
+            if(length(b)==0){
+              return(movie)
+            }
+            else{
+              b<-b[-1]
+              recursivefunction(c1,b,n=5,j,movie)
+            }
+          }
+          else{
+            return(movie)
+          }
+        } 
+        movie<-rep("no movie found",5)
+        find_similarity_movie<-function(myid,n=5){
+          similar <- subset(results, user1==myid)
+          similar <- similar[order(-similar$sim),]
+          b<-similar[,2]
+          c1<-matrix1[which(rownames(matrix1)==myid),]
+          recursivefunction(c1,b,n=5,j=1,movie)
+        }
+        mymovie<-paste("http://www.amazon.com/exec/obidos/ASIN/",find_similarity_movie(input$myid))
+        mymovie
+      })
 })
