@@ -21,10 +21,14 @@ We choose three columns: product id, user id and moving ratings for each user to
 
 ## Movie Recommendation Engine
 Our recommendation engine is user-based. We will recommend you five movies you might like based on your recent acticities (such as moving rating). 
-The general ideas for the engine is: when you input you ID, we will help you find users with the similar interests and recommend the movies they like for you. Try the [APP](https://zehaowang.shinyapps.io/project4/) here!!
+The algorithm for the engine is: when you input you ID, we will help you find users with the similar interests and recommend the movies they like for you. Try the [APP](https://zehaowang.shinyapps.io/project4/) here!!
 
 ## Shiny App: Movie Analysis 
-Furthermore, we also analyse some [interesing data](https://zehaowang.shinyapps.io/project4/) of the movies.  
+Furthermore, we also analyse some [interesing data](https://zehaowang.shinyapps.io/project4/) of the movies. Use the app, you can get some general ideas of the development of movie industry in recent 60 years, the famous productions and oscars.
+
+
+## More informations
+Part of code is in our [presentation](https://github.com/TZstatsADS/project4-team-10/blob/master/output/presentation.pdf)
 
 
 
