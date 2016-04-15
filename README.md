@@ -1,7 +1,6 @@
 # Project 4 Collective intelligence
-### Mining Amazon Movies Reviews
+### Movie Recommendation Engine
 
-Term: Spring 2016
 Group 10: Zehao Wang, Qianyun Zhang, Yi Liu, Danmo Wang, Zhibo Wan
 
 In this project, we attempt to use the user-based Collaborative Filtering approach to build a basic movie recommendation engine and analyze the information of the movies.There are 4 parts of the this presentation:  
@@ -20,18 +19,13 @@ We firstly use the dataset "movie.csv".In order to keep the recommender simple, 
 In this method, we only use the movie ratings of users to calculate the similarity.
 We choose three columns: product id, user id and moving ratings for each user to the specific movie. And then we reshape the data and construct a big matrix where the columns are the product IDs and the rows are the User IDs.
 
+## Movie Recommendation Engine
+Our recommendation engine is user-based. We will recommend you five movies you might like based on your recent acticities (such as moving rating). 
+The general ideas for the engine is: when you input you ID, we will help you find users with the similar interests and recommend the movies they like for you. Try the [APP](https://zehaowang.shinyapps.io/project4/) here!!
+
+## Shiny App: Movie Analysis 
+Furthermore, we also analyse some [interesing data](https://zehaowang.shinyapps.io/project4/) of the movies.  
 
 
-Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 
-```
-proj/
-├── lib/
-├── data/
-├── doc/
-├── figs/
-└── output/
-```
-
-Please see each subfolder for a README file.
 
