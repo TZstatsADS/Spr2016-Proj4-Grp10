@@ -1,5 +1,4 @@
-# Project 4 Collective intelligence
-### Movie Recommendation Engine
+# Project 4 Movie Recommendation Engine
 
 Group 10: Zehao Wang, Qianyun Zhang, Yi Liu, Danmo Wang, Zhibo Wan
 
