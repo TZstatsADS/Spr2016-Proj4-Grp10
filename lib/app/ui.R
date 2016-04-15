@@ -10,7 +10,6 @@ library(plyr)
 library(reshape2)
 library(shiny)
 library(plotly)
-
 library(splitstackshape)
 library(ggplot2)
 library(shinydashboard)
@@ -37,10 +36,10 @@ shinyUI(fluidPage(titlePanel("Movie Movie Movie"),
                                                              
                                             ),
                                             conditionalPanel(condition="input.Panels==3",
-                                                             #helpText("Choose an id to start"),
+                                                             helpText("When you select an id, we recommend 5 movies with the html link given to you"),
                                                              hr(),
                                                              selectInput("myid","Select an id to start",
-                                                                         c("A102B8D74H64TO","A103KNDW8GN92L"))
+                                                                         c("A100JCBNALJFAW","A102B8D74H64TO","A103KNDW8GN92L","A103QX7NUHBOUF","A103W7ZPKGOCC9","A105YVLAZNYQUU"))
                                             )
                                           ),
                                           mainPanel(
@@ -49,8 +48,7 @@ shinyUI(fluidPage(titlePanel("Movie Movie Movie"),
                                                         tabPanel("Analysis", br(),plotlyOutput("distplot1") , value=1), 
                                                         
                                                         tabPanel("Genre Analysis", br(), plotlyOutput("distplot2"), value=2),
-                                                        tabPanel("Engine", br(), verbatimTextOutput("view"),helpText("movies recommended to you"), value=3),
-                                                        
+                                                        tabPanel("Engine", br(), helpText("movies recommended to you"), uiOutput("view"),value=3),
                                                         id = "Panels"
                                             )
                                           )

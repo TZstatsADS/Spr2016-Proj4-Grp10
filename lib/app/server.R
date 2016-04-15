@@ -8,7 +8,8 @@
 #
 
 library(shiny)
-
+load("results.RData")
+load("matrix1.RData")
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
   genre <- read.csv("genre.csv")
@@ -37,9 +38,7 @@ shinyServer(function(input, output) {
       }
       
     )
-  output$view <- renderPrint({
-        load("results.RData")
-        load("matrix1.RData")
+  output$view <- renderUI({
         recursivefunction<-function(c1,b,n=5,j=1,movie){
           c2<-matrix1[which(rownames(matrix1)==b[1]),]
           for(i in 1:length(c1)){
@@ -72,6 +71,12 @@ shinyServer(function(input, output) {
           recursivefunction(c1,b,n=5,j=1,movie)
         }
         mymovie<-paste("http://www.amazon.com/exec/obidos/ASIN/",find_similarity_movie(input$myid))
-        mymovie
+        return(list(a(href=mymovie[1], target="_blank", mymovie[1]),
+                    a(href=mymovie[2], target="_blank", mymovie[2]),
+                    a(href=mymovie[3], target="_blank", mymovie[3]),
+                    a(href=mymovie[4], target="_blank", mymovie[4]),
+                    a(href=mymovie[5], target="_blank", mymovie[5])))
+        #a(href=mymovie[2], target="_blank", mymovie[2])
       })
+  
 })
