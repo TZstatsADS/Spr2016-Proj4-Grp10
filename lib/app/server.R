@@ -10,8 +10,11 @@
 library(shiny)
 load("results.RData")
 load("matrix1.RData")
+source("similarity.R")
+
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
+  
   genre <- read.csv("genre.csv")
   test <- read.csv("test.csv")
   production <- read.csv("production.csv", sep="")
@@ -39,44 +42,22 @@ shinyServer(function(input, output) {
       
     )
   output$view <- renderUI({
-        recursivefunction<-function(c1,b,n=5,j=1,movie){
-          c2<-matrix1[which(rownames(matrix1)==b[1]),]
-          for(i in 1:length(c1)){
-            if (c1[i]==0 & c2[i]>1){
-              if(!(names(c1)[i] %in% movie)){
-                movie[j]=names(c1)[i]
-                j=j+1
-              }
-            }
-          }
-          if(j<n+1){
-            if(length(b)==0){
-              return(movie)
-            }
-            else{
-              b<-b[-1]
-              recursivefunction(c1,b,n=5,j,movie)
-            }
-          }
-          else{
-            return(movie)
-          }
-        } 
-        movie<-rep("no movie found",5)
-        find_similarity_movie<-function(myid,n=5){
-          similar <- subset(results, user1==myid)
-          similar <- similar[order(-similar$sim),]
-          b<-similar[,2]
-          c1<-matrix1[which(rownames(matrix1)==myid),]
-          recursivefunction(c1,b,n=5,j=1,movie)
-        }
+        
         mymovie<-paste("http://www.amazon.com/exec/obidos/ASIN/",find_similarity_movie(input$myid))
         return(list(a(href=mymovie[1], target="_blank", mymovie[1]),
                     a(href=mymovie[2], target="_blank", mymovie[2]),
                     a(href=mymovie[3], target="_blank", mymovie[3]),
                     a(href=mymovie[4], target="_blank", mymovie[4]),
                     a(href=mymovie[5], target="_blank", mymovie[5])))
-        #a(href=mymovie[2], target="_blank", mymovie[2])
       })
+  output$poster1<-renderImage({
+  outmovie<-find_similarity_movie(input$myid)
+  list(src = paste(outmovie[1],"jpg",sep="."),alt = "Image failed to render",width=400,height=600,style="display: block; margin-left: auto; margin-right: auto;")
+  #list(src = paste(outmovie[2],"jpg",sep="."),alt = "Image failed to render",width=400,height=600,style="display: block; margin-left: auto; margin-right: auto;")
+  #list(src = paste(outmovie[3],"jpg",sep="."),alt = "Image failed to render",width=400,height=600,style="display: block; margin-left: auto; margin-right: auto;")
+  #list(src = paste(outmovie[4],"jpg",sep="."),alt = "Image failed to render",width=200,height=200,style="display: block; margin-left: auto; margin-right: auto;")
+  #list(src = paste(outmovie[5],"jpg",sep="."),alt = "Image failed to render",width=200,height=200,style="display: block; margin-left: auto; margin-right: auto;")
+  
+  }, deleteFile = FALSE)
   
 })

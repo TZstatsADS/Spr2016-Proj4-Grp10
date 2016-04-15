@@ -13,6 +13,7 @@ library(plotly)
 library(splitstackshape)
 library(ggplot2)
 library(shinydashboard)
+load("matrix1.RData")
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(titlePanel("Movie Movie Movie"),
                     
@@ -39,7 +40,9 @@ shinyUI(fluidPage(titlePanel("Movie Movie Movie"),
                                                              helpText("When you select an id, we recommend 5 movies with the html link given to you"),
                                                              hr(),
                                                              selectInput("myid","Select an id to start",
-                                                                         c("A100JCBNALJFAW","A102B8D74H64TO","A103KNDW8GN92L","A103QX7NUHBOUF","A103W7ZPKGOCC9","A105YVLAZNYQUU"))
+                                                                         #c("A100JCBNALJFAW","A102B8D74H64TO","A103KNDW8GN92L","A103QX7NUHBOUF","A103W7ZPKGOCC9","A105YVLAZNYQUU")
+                                                                         row.names(matrix1)[1:10]
+                                                                         )
                                             )
                                           ),
                                           mainPanel(
@@ -48,7 +51,13 @@ shinyUI(fluidPage(titlePanel("Movie Movie Movie"),
                                                         tabPanel("Analysis", br(),plotlyOutput("distplot1") , value=1), 
                                                         
                                                         tabPanel("Genre Analysis", br(), plotlyOutput("distplot2"), value=2),
-                                                        tabPanel("Engine", br(), helpText("movies recommended to you"), uiOutput("view"),value=3),
+                                                        tabPanel("Engine", br(), helpText("movies recommended to you"), 
+                                                                 imageOutput("poster1", width = "100%", height = "100%"),
+                                                                 #imageOutput("poster2", width = "100%", height = "100%"),
+                                                                 #imageOutput("poster3", width = "100%", height = "100%"),
+                                                                 #imageOutput("poster4", width = "100%", height = "100%"),
+                                                                 #imageOutput("poster5", width = "100%", height = "100%"),
+                                                                 uiOutput("view"),value=3),
                                                         id = "Panels"
                                             )
                                           )
